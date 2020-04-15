@@ -14,7 +14,7 @@ class TicTacToe
   end
   
   def input_to_index(input)
-    @board[input-1]
+    integer = input.to_i-1
   end
   
   def move(index,token="X")
@@ -29,19 +29,6 @@ class TicTacToe
     position.between?(0,9) && @board[position] == " " ? true : false
   end
   
-  def turn
-    puts "Please enter 1-9:"
-    user_input = gets
-    index = input_to_index(user_input)
-    if valid_move?(index)
-      move(index,token)
-      display_board
-    else
-      puts "Please enter a valid move (1-9):"
-      turn
-    end
-  end
-  
   def turn_count
     @board.count{|token| token == "X" || token == "O"}
   end
@@ -50,11 +37,24 @@ class TicTacToe
     turn_count % 2 == 0 ? "X" : "O"
   end
   
+  def turn
+    puts "Please enter 1-9:"
+    user_input = gets
+    index = input_to_index(user_input)
+    if valid_move?(index)
+      move(index,current_player)
+      display_board
+    else
+      puts "Please enter a valid move (1-9):"
+      turn
+    end
+  end
+
   def won?
-    won = false
+    won = nil
     WIN_COMBINATIONS.each do |combo|
       if @board.include?(combo)
-        won = true
+        won = combo
       end
     end
     won
