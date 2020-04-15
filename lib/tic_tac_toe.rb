@@ -50,7 +50,7 @@ class TicTacToe
     end
   end
 
-def won?
+def won? # Returns true if there is a win and false otherwise
   WIN_COMBINATIONS.each do |win_combo|
    if @board[win_combo[0]] == "X" && @board[win_combo[1]] == "X" && @board[win_combo[2]] == "X" || @board[win_combo[0]] == "O" && @board[win_combo[1]] == "O" && @board[win_combo[2]] == "O"
     return win_combo
@@ -59,8 +59,20 @@ def won?
   false
 end
 
-def full?
+def full? # Returns true if board is full
   @board.none? {|check| check == " "}
+end
+
+def draw?
+  full? && !won? ? true : false
+end
+  
+def over?
+full?
+end
+
+def winner
+won? ? current_player == "X" ? "O" : "X" : nil
 end
   
 end
