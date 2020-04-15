@@ -1,3 +1,5 @@
+include "pry"
+
 class TicTacToe
   def initialize(board = nil)
     @board = board || Array.new(9, " ")
@@ -54,6 +56,7 @@ class TicTacToe
     won = nil
     WIN_COMBINATIONS.each do |combo|
       if @board.include?(combo)
+        binding.pry
         won = combo
       end
     end
