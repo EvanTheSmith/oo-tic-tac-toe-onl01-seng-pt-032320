@@ -70,7 +70,7 @@ def draw?
 end
   
 def over?
-full? || won?
+draw? || won?
 end
 
 def winner
@@ -78,12 +78,10 @@ won? ? current_player == "X" ? "O" : "X" : nil
 end
 
 def play
-until over? do
-turn
-end
+turn until over?
   if won?
     puts "Congratulations #{winner}!"
-  elsif draw?
+  else
     puts "Cat's Game!"
   end
 end
