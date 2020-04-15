@@ -59,7 +59,7 @@ def won?
   false
 end
 
-def full
+def full?
   @board.none? {|check| check == " "}
 end
   
